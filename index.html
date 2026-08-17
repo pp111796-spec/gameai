@@ -211,31 +211,10 @@
   .thumbnail-screen {
     position: fixed;
     inset: 0;
-    background-image:
-      linear-gradient(to bottom, rgba(10,7,14,0.05) 0%, rgba(10,7,14,0.15) 55%, rgba(10,7,14,0.85) 100%),
-      url('assets/thumbnail.png');
+    background-image: url('assets/thumbnail.jpg');
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 8%;
     cursor: pointer;
-  }
-  .tap-start {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.12em;
-    color: #f1e9dd;
-    padding: 12px 28px;
-    border: 1px solid rgba(241,233,221,0.5);
-    border-radius: 999px;
-    animation: tapPulse 1.6s ease-in-out infinite;
-  }
-  @keyframes tapPulse {
-    0%, 100% { opacity: 0.55; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.04); }
   }
 </style>
 </head>
@@ -674,11 +653,7 @@ function renderEnding() {
 }
 
 function renderThumbnail() {
-  return (
-    '<div class="thumbnail-screen" onclick="goToIntro()">' +
-      '<div class="tap-start">TAP TO START</div>' +
-    '</div>'
-  );
+  return '<div class="thumbnail-screen" onclick="goToIntro()"></div>';
 }
 
 function render() {
