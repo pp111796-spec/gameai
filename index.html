@@ -46,21 +46,7 @@
   }
   .body-pad { padding: 26px 24px 24px; }
 
-  .intro-title {
-    font-family: 'Noto Serif KR', serif;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 1.4;
-    color: #f1e9dd;
-    margin: 4px 0 14px;
-  }
-  .intro-sub {
-    font-size: 14px;
-    line-height: 1.75;
-    color: rgba(241,233,221,0.72);
-    margin-bottom: 26px;
-  }
-  .start-btn, .choice-btn, .replay-btn, .continue-btn {
+  .choice-btn, .replay-btn, .continue-btn {
     width: 100%;
     text-align: left;
     background: #2c2237;
@@ -74,8 +60,8 @@
     transition: all 0.15s ease;
     margin-bottom: 10px;
   }
-  .start-btn, .continue-btn { text-align: center; background: #e8a33d; color: #241b2f; font-weight: 700; border: none; padding: 15px; }
-  .start-btn:hover, .continue-btn:hover { background: #f0b256; }
+  .continue-btn { text-align: center; background: #e8a33d; color: #241b2f; font-weight: 700; border: none; padding: 15px; }
+  .continue-btn:hover { background: #f0b256; }
   .choice-btn:hover { background: #382b48; border-color: #e8a33d; transform: translateX(2px); }
   .choice-btn .line { font-size: 14px; line-height: 1.55; color: #f1e9dd; }
 
@@ -502,7 +488,7 @@ function computeEnding(trust, defense, ignoreCount) {
 
 /* ============ STATE ============ */
 let state = {
-  screen: "thumbnail", // thumbnail | intro | scene | ending
+  screen: "thumbnail", // thumbnail | scene | ending
   sceneIdx: 0,
   trust: 5,
   defense: 5,
@@ -517,11 +503,6 @@ function clamp10(v) { return Math.max(0, Math.min(10, v)); }
 function currentScene() { return SCENES[state.sceneIdx]; }
 
 /* ============ ACTIONS ============ */
-function goToIntro() {
-  state.screen = "intro";
-  render();
-}
-
 function startGame() {
   state.screen = "scene";
   render();
@@ -529,7 +510,7 @@ function startGame() {
 
 function restart() {
   state = {
-    screen: "intro", sceneIdx: 0, trust: 5, defense: 5,
+    screen: "scene", sceneIdx: 0, trust: 5, defense: 5,
     ignoreCount: 0, reaction: null, showChoices: true, endingKey: null,
     previewSuccess: false,
   };
@@ -612,20 +593,6 @@ function renderProgressDots() {
     dots += '<span class="dot ' + cls + '"></span>';
   });
   return '<div class="progress-dots">' + dots + '</div>';
-}
-
-function renderIntro() {
-  return (
-    '<div class="intro-title">그 애는 원래<br>그런 애가 아니었는데</div>' +
-    '<div class="intro-sub">' +
-      '고등학생 동생 은우와 한집에 사는 당신.<br>' +
-      '요즘 은우가 하는 말이 조금씩 낯설다.<br><br>' +
-      '은우와의 대화 속에서<br>' +
-      '당신은 어떻게, 그리고 언제 반응할 것인가 — <br>' +
-      '그 선택과 타이밍이 은우를 바꿀 수도, 더 멀어지게 할 수도 있다.' +
-    '</div>' +
-    '<button class="start-btn" onclick="startGame()">시작하기</button>'
-  );
 }
 
 function renderInterlude(scene) {
@@ -715,7 +682,7 @@ function renderEnding() {
 }
 
 function renderThumbnail() {
-  return '<div class="thumbnail-screen" onclick="goToIntro()"><img src="assets/thumbnail.jpg" alt=""></div>';
+  return '<div class="thumbnail-screen" onclick="startGame()"><img src="assets/thumbnail.jpg" alt=""></div>';
 }
 
 function render() {
@@ -726,13 +693,11 @@ function render() {
 
   let inner = "";
 
-  if (state.screen !== "intro") inner += renderTitlebar();
+  inner += renderTitlebar();
   if (state.screen === "scene") inner += renderProgressDots();
 
   inner += '<div class="body-pad">';
-  if (state.screen === "intro") {
-    inner += renderIntro();
-  } else if (state.screen === "scene") {
+  if (state.screen === "scene") {
     const scene = currentScene();
     if (scene.type === "interlude") inner += renderInterlude(scene);
     else if (scene.type === "quiet") inner += renderQuiet(scene);
