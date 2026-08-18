@@ -45,23 +45,6 @@
     color: #e8a33d;
     letter-spacing: 0.02em;
   }
-  .meters {
-    display: flex;
-    gap: 10px;
-    font-size: 10px;
-    color: rgba(241,233,221,0.45);
-  }
-  .meter-bar {
-    width: 34px;
-    height: 4px;
-    border-radius: 2px;
-    background: rgba(241,233,221,0.12);
-    overflow: hidden;
-    display: inline-block;
-    margin-left: 4px;
-    vertical-align: middle;
-  }
-  .meter-fill { height: 100%; display: block; }
   .body-pad { padding: 26px 24px 24px; }
 
   .intro-title {
@@ -613,15 +596,7 @@ const root = document.getElementById("root");
 
 function renderTitlebar() {
   const dayLabel = state.screen === "scene" ? (currentScene().day || "") : "결말";
-  return (
-    '<div class="titlebar">' +
-      '<span class="day">' + dayLabel + '</span>' +
-      '<div class="meters">' +
-        '<span>신뢰<span class="meter-bar"><span class="meter-fill" style="width:' + (state.trust * 10) + '%;background:#e8a33d"></span></span></span>' +
-        '<span>방어<span class="meter-bar"><span class="meter-fill" style="width:' + (state.defense * 10) + '%;background:#b84c3c"></span></span></span>' +
-      '</div>' +
-    '</div>'
-  );
+  return '<div class="titlebar"><span class="day">' + dayLabel + '</span></div>';
 }
 
 function renderProgressDots() {
