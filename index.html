@@ -211,10 +211,18 @@
   .thumbnail-screen {
     position: fixed;
     inset: 0;
-    background-image: url('assets/thumbnail.jpg');
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+  }
+  .thumbnail-screen img {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.45);
   }
 </style>
 </head>
@@ -653,7 +661,7 @@ function renderEnding() {
 }
 
 function renderThumbnail() {
-  return '<div class="thumbnail-screen" onclick="goToIntro()"></div>';
+  return '<div class="thumbnail-screen" onclick="goToIntro()"><img src="assets/thumbnail.jpg" alt=""></div>';
 }
 
 function render() {
