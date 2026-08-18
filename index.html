@@ -22,9 +22,11 @@
     word-break: keep-all;
     overflow-wrap: break-word;
   }
+  #root { width: 100%; }
   .card {
     width: 100%;
-    max-width: 460px;
+    max-width: 720px;
+    margin: 0 auto;
     background: #1f1826;
     border: 1px solid rgba(241,233,221,0.08);
     border-radius: 20px;
@@ -353,7 +355,7 @@ const SCENES = [
   },
   {
     type: "interlude",
-    tag: "그 시각, 은우는",
+    tag: "은우의 속마음",
     voice: [
       "요즘 학교에서도, 집에서도 내 말은 아무도 안 들어주는 것 같다.",
       "근데 그 방에 들어가면 다르다. 내가 뭘 올려도 다들 “ㅇㅈㅇㅈ” 하면서 맞장구쳐준다.",
@@ -412,7 +414,7 @@ const SCENES = [
   },
   {
     type: "interlude",
-    tag: "그 시각, 은우는",
+    tag: "은우의 속마음",
     voice: [
       "오프모임... 사실 좀 무섭다. 근데 안 나가면 나만 빠지는 것 같아서.",
       "가끔 내가 하는 말이 진짜 내 생각인지, 그냥 거기서 배운 말인지 헷갈릴 때가 있다.",
@@ -520,11 +522,13 @@ function restart() {
 function showSuccessPreview() {
   state.previewSuccess = true;
   render();
+  window.scrollTo(0, 0);
 }
 
 function hideSuccessPreview() {
   state.previewSuccess = false;
   render();
+  window.scrollTo(0, 0);
 }
 
 function advanceAfterReaction() {
