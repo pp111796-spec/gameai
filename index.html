@@ -33,7 +33,6 @@
   }
   .titlebar {
     padding: 18px 22px 14px;
-    border-bottom: 1px solid rgba(241,233,221,0.08);
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -220,7 +219,13 @@
     text-align: center;
     margin-bottom: 16px;
   }
-  .progress-dots { display: flex; gap: 6px; padding: 0 22px; margin-top: 12px; margin-bottom: 2px; }
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    padding: 0 22px 14px;
+    margin-top: 12px;
+    border-bottom: 1px solid rgba(241,233,221,0.08);
+  }
   .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(241,233,221,0.15); display: inline-block; }
   .dot.active { background: #e8a33d; }
   .dot.done { background: rgba(232,163,61,0.4); }
