@@ -162,6 +162,8 @@
     display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 1.79 / 1;
+    background: #17121c;
     border-radius: 14px;
   }
   .ending-info { min-width: 0; }
@@ -485,6 +487,12 @@ const ENDINGS = {
     promptA: "어쩌면 내가 먼저 건넨 한마디가, 누군가가 자신의 생각을 돌아보는 계기가 되었을지 모릅니다.",
   },
 };
+
+/* Preload ending images up front so the ending screen never waits on them mid-story. */
+Object.keys(ENDINGS).forEach(function (key) {
+  const img = new Image();
+  img.src = ENDINGS[key].image;
+});
 
 function computeEnding(trust, defense, ignoreCount) {
   if (ignoreCount >= 4) return "surface";
